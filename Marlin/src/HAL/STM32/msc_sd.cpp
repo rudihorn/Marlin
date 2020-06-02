@@ -81,7 +81,5 @@
 void MSC_SD_Init() {
   #if SD_CONNECTION_IS(ONBOARD)
     USBDevice.register_msc(&USBD_MSC_SD_fops);
-    USBDevice.end();
-    USBDevice.begin();
   #endif
 }
