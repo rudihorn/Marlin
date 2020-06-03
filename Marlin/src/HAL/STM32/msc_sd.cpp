@@ -48,7 +48,7 @@
         }
 
         pCard->readStop();
-        return USBD_OK;
+        return true;
       }
 
       bool IsReady() {
