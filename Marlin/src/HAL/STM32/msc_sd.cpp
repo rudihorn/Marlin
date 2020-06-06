@@ -1,5 +1,6 @@
 
 #include "../../inc/MarlinConfig.h"
+#include "../../MarlinCore.h"
 #include "msc_sd.h"
 
 #if SD_CONNECTION_IS(ONBOARD)
@@ -24,36 +25,27 @@
       }
 
       bool Write(uint8_t *pBuf, uint32_t blkAddr, uint16_t blkLen) {
-        if (!pCard->writeStart(blkAddr, blkLen))
-          return false;
-
-        for (int i= 0; i < blkLen; i++) {
-          if (!pCard->writeData(pBuf))
+        for (uint32_t i = 0; i < blkLen; i++) {
+          if (!pCard->writeBlock(blkAddr + i, pBuf))
             return false;
           pBuf += BLOCK_SIZE;
         }
 
-        pCard->writeStop();
         return true;
       }
 
       bool Read(uint8_t *pBuf, uint32_t blkAddr, uint16_t blkLen) {
-        if (!pCard->readStart(blkAddr))
-          return false;
-
-        for (uint16_t i = 0; i < blkLen; i++) {
-          if (!pCard->readData(pBuf))
+        for (uint32_t i = 0; i < blkLen; i++) {
+          if (!pCard->readBlock(blkAddr + i, pBuf))
             return false;
           pBuf += BLOCK_SIZE;
         }
 
-        pCard->readStop();
         return true;
       }
 
       bool IsReady() {
-        // the card is ready when we know its capacity
-        return pCard->cardSize() > 0;
+        return card.isMounted();
       }
 
     private:
