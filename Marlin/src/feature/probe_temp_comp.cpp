@@ -179,7 +179,7 @@ float ProbeTempComp::get_offset_for_temperature(const TempSensorID tsi, const fl
   };
 
   // Linear interpolation
-  uint8_t idx = static_cast<uint8_t>(temp - start_temp / res_temp);
+  uint8_t idx = static_cast<uint8_t>((temp - start_temp) / res_temp);
 
   // offset in um
   float offset = 0.0f;
