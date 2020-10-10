@@ -34,7 +34,7 @@
 
 #include "../core/boards.h"
 #include "../core/macros.h"
-#include "../../Configuration.h"
+#include "../../../../skr-pro-configuration/Configuration.h"
 
 #ifdef CUSTOM_VERSION_FILE
   #if __has_include(STRINGIFY(../../CUSTOM_VERSION_FILE))
@@ -48,7 +48,7 @@
 #include HAL_PATH(../HAL, inc/Conditionals_LCD.h)
 
 #include "../core/drivers.h"
-#include "../../Configuration_adv.h"
+#include "../../../../skr-pro-configuration/Configuration_adv.h"
 
 #include "Conditionals_adv.h"
 #include HAL_PATH(../HAL, inc/Conditionals_adv.h)
